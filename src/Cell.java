@@ -1,17 +1,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
-public class Cell {
+public class Cell extends Rectangle {
+  // static 
+  static int DEFAULT_SIZE = 35;
   // fields
-  int x;
-  int y;
-  static int size = 35;
-
+  public int size = DEFAULT_SIZE;
+  
   // constructors
   public Cell(int inX, int inY) {
-    x = inX;
-    y = inY;
+    super(inX, inY, DEFAULT_SIZE, DEFAULT_SIZE);
   }
 
   // methods
@@ -28,7 +28,7 @@ public class Cell {
 
   public boolean contains(Point p) {
     if(p != null) {
-      return x < p.x && x+size > p.x && y < p.y && y+size > p.y;
+      return this.contains(p.x, p.y);
     } else {
       return false;
     }
